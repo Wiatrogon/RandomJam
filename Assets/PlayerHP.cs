@@ -10,6 +10,6 @@ public class PlayerHP : MonoBehaviour
 
     public void Start()
     {
-        text.text = string.Format("{0}/{1}", player.currentHP.ToString(), player.maxHP.ToString() ); 
+        text.text = string.Format("{0}/{1}", player.currentHP.ToString(), player.MaxHP().ToString() ); 
     }
 }
