@@ -9,5 +9,17 @@ public class Monster : Character
         Character player = Player.instance;
         player.TakeDamage(RollForDamage());
         TakeDamage(player.RollForDamage());
+        if(currentHP <= 0)
+        {
+            DropLoot();
+        }
+    }
+
+    public void DropLoot()
+    {
+        foreach(var item in inventory)
+        {
+            Player.instance.AddDice(item.Key, item.Value);
+        }
     }
 }

@@ -4,13 +4,26 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    public Dictionary<int, int> inventory = new Dictionary<int, int>(); 
-    public int currentHP = 6;
-
-    public virtual void Start()
+    public Dictionary<int, int> inventory = new Dictionary<int, int>();
+    public int currentHP
     {
-        inventory.Add(6, 1);
-        currentHP = MaxHP();
+        get;
+        private set;
+    } = 0;
+
+public virtual void Start()
+    {
+        AddDice(6);
+    }
+
+    public void AddDice(int maxRoll, int count = 1)
+    {
+        if (!inventory.ContainsKey(maxRoll) ) 
+        {
+            inventory.Add(maxRoll, 0);
+        }
+        inventory[maxRoll] += count;
+        currentHP += maxRoll*count;
     }
 
     public int MaxHP()
