@@ -5,11 +5,11 @@ using UnityEngine;
 public class InventoryText : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI text;
-    [SerializeField] private Player player;
+    [SerializeField] private Character player;
     public void Update()
     {
         text.text = "";
-        foreach (var item in player.inventoryDict.OrderBy(item => item.Key))
+        foreach (var item in player.inventory.OrderBy(item => item.Key))
         {
             if(item.Value == 0)
             {

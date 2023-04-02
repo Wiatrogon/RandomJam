@@ -6,10 +6,10 @@ public class PlayerHP : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI text;
     [SerializeField]
-    private Player player;
+    private Character player;
 
-    public void Start()
+    public void Update()
     {
-        text.text = string.Format("{0}/{1}", player.currentHP.ToString(), player.MaxHP().ToString() ); 
+        text.text = string.Format("{0:d}/{1:d}", player.currentHP, player.MaxHP()); 
     }
 }
