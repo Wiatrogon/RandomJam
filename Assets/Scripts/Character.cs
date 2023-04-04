@@ -5,16 +5,14 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     public Dictionary<int, int> inventory = new Dictionary<int, int>();
+
+    public int Level { get { return inventory.Aggregate(0, (level, dice) => level + dice.Value); } }
+    public string displayName;
     public int currentHP
     {
         get;
         private set;
     } = 0;
-
-public virtual void Start()
-    {
-        AddDice(6);
-    }
 
     public void AddDice(int maxRoll, int count = 1)
     {

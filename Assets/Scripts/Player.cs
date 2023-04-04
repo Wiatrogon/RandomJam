@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Player : Character
@@ -9,10 +10,10 @@ public class Player : Character
         get;
         private set;
     }
-
-    public override void Start()
+    public void Start()
     {
-        base.Start();
+        displayName = "Hero";
+        AddDice(6);
         if(instance == null)
         {
             instance = this;

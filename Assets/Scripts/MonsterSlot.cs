@@ -4,6 +4,8 @@ public class MonsterSlot : MonoBehaviour
 {
     Monster monster;
     [SerializeField] CharacterHP monsterHP;
+    [SerializeField] MonsterSpawner spawner;
+    [SerializeField] CharacterLevel monsterLevel;
 
     void Update()
     {
@@ -20,8 +22,9 @@ public class MonsterSlot : MonoBehaviour
 
     public void SpawnMonster()
     {
-        monster = this.gameObject.AddComponent<Monster>();
+        monster = spawner.CreateMonster(this);
         monsterHP.character = monster;
+        monsterLevel.character = monster;
     }
 
     public void Combat()
