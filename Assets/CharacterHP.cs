@@ -6,7 +6,7 @@ public class CharacterHP : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI text;
     [SerializeField]
-    private Character character;
+    public Character character;
 
     public void Update()
     {

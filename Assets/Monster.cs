@@ -6,6 +6,10 @@ public class Monster : Character
 {
     public void Combat()
     {
+        if(currentHP <= 0)
+        {
+            return;
+        }
         Character player = Player.instance;
         player.TakeDamage(RollForDamage());
         TakeDamage(player.RollForDamage());
