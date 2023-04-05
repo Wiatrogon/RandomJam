@@ -2,11 +2,15 @@ using UnityEngine;
 
 public class Dice : MonoBehaviour
 {
-    public int maxRoll = 6;
-
-    public int Roll()
+    public enum Type
     {
-        return Random.Range(1, maxRoll + 1);
+        d4 = 4,
+        d6 = 6,
+        d8 = 8,
     }
 
+    public static int Roll(Dice.Type dice)
+    {
+        return Random.Range(1, (int) dice + 1);
+    }
 }
