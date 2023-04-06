@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    public Dictionary<int, int> inventory = new Dictionary<int, int>();
+    public Dictionary<Dice.Type, int> inventory = new Dictionary<Dice.Type, int>();
 
-    public int Level { get { return inventory.Aggregate(0, (level, dice) => level + dice.Value); } }
+    public int Level { get { return inventory.Sum(dice => dice.Value); } }
+    public int MaxHP { get { return inventory.Sum(dice => (int) dice.Key * dice.Value); }}
     public string displayName;
     public int currentHP
     {
@@ -14,19 +15,14 @@ public class Character : MonoBehaviour
         private set;
     } = 0;
 
-    public void AddDice(int maxRoll, int count = 1)
+    public void AddDice(Dice.Type dice, int count = 1)
     {
-        if (!inventory.ContainsKey(maxRoll) ) 
+        if (!inventory.ContainsKey(dice))
         {
-            inventory.Add(maxRoll, 0);
+            inventory.Add(dice, 0);
         }
-        inventory[maxRoll] += count;
-        currentHP += maxRoll*count;
-    }
-
-    public int MaxHP()
-    {
-        return inventory.Sum(dice => dice.Key * dice.Value);
+        inventory[dice] += count;
+        currentHP += (int) dice * count;
     }
 
     public int RollForDamage()
@@ -36,7 +32,7 @@ public class Character : MonoBehaviour
         {
             for(int i = 0; i< dice.Value; i++)
             {
-                damage += Random.Range(1, dice.Key + 1);
+                damage += Dice.Roll(dice.Key);
             }
         }
         return damage;

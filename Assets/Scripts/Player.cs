@@ -10,10 +10,11 @@ public class Player : Character
         get;
         private set;
     }
+
     public void Start()
     {
         displayName = "Hero";
-        AddDice(6);
+        AddDice(Dice.Type.d6);
         if(instance == null)
         {
             instance = this;
